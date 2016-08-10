@@ -4,18 +4,16 @@ class Application_Forms_Editare extends Zend_Form {
         $validator = new Zend_Validate_NotEmpty();
         $validator->setMessage('Nu poate fi gol');
 
-        $campNume = new Zend_Form_Element_Text('id');
-        $campNume->setLabel('Id')
+        $campId = new Zend_Form_Element_Text('id');
+        $campId->setLabel('Id')
             ->setRequired(true)
             ->addValidator($validator);
 
-        $campImage = new Zend_Form_Element_Text('image');
-        $campImage->setLabel('Image')
-            ->setRequired(true)
-            ->addValidator($validator);
+        $campImage = new Zend_Form_Element_File('image');
+        $campId->setLabel('Image');
 
-        $campData = new Zend_Form_Element_Text('title');
-        $campData->setLabel('Title')
+        $campTitle = new Zend_Form_Element_Text('title');
+        $campTitle->setLabel('Title')
             ->setRequired(true)
             ->addValidator($validator);
             
@@ -30,7 +28,7 @@ class Application_Forms_Editare extends Zend_Form {
         $buton = new Zend_Form_Element_Submit('submit');
         $buton->setLabel('OK');
         
-        $this->addElements(array($campNume,$campImage, $campData, $campDesc, $campPrice));
+        $this->addElements(array($campId, $campImage, $campTitle, $campDesc, $campPrice, $buton));
     }
 }
 ?>

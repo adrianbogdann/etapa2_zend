@@ -36,5 +36,16 @@ class IndexController extends Zend_Controller_Action {
         $_SESSION['cart'][$id] = $id;
         $this->view->prids = $_SESSION['cart'];
     }
+
+    public function cartAction() {
+        $products = new Application_Models_Products();
+        $this->view->products = $products->fetchAll();
+    }
+
+    public function removefromcartAction() {
+        session_start();
+        $id = $this->getRequest()->getParam('id');
+        unset($_SESSION['cart'][$id]);
+    }
 }
 ?>

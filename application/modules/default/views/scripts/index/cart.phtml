@@ -1,11 +1,5 @@
 <?= $this->render('header.phtml'); ?>
-    <div id="navbar">
-        <ul id="navbar-list">
-            <li><a href="/index/cart">Cart</a></li>
-            <li><a href="/index">Products</a></li>
-        </ul>
-    </div>
-    <table>
+    <table border="1">
         <tr>
             <th>Id</th>
             <th>Image</th>
@@ -13,8 +7,8 @@
             <th>Description</th>
             <th>Price</th>
             <th></th>
-                
-        </tr>                                      
+
+        </tr>
         <? foreach ($this->products as $product): ?>
             <tr>
                 <td><?= $product->productId ?></td>
@@ -22,10 +16,9 @@
                 <td><?= $product->productTitle ?></td>
                 <td><?= $product->productDesc ?></td>
                 <td><?= $product->productPrice ?></td>
-                <td><a href="/index/addtocart/id/<?= $product->productId ?>">Add to cart</a></td>
-            </tr>                                      
+                <td><a href="/index/removefromcart/id/<?= $product->productId ?>">Remove from cart</a></td>
+
+            </tr>
         <? endforeach; ?>
     </table>
-    <br />
-    <a href="/index/adauga/">Adauga</a>
 <?= $this->render('footer.phtml'); ?>

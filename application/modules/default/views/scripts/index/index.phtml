@@ -1,15 +1,20 @@
 <?= $this->render('header.phtml'); ?>
     <table border="1">
         <tr>
-            <th>Nume</th>
-            <th>Data nasterii</th>
-            <th>Detalii</th>
+            <th>Id</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
         </tr>                                      
-        <? foreach ($this->contacte as $contact): ?>
+        <? foreach ($this->products as $product): ?>
             <tr>
-                <td><?= $contact->nume ?></td>
-                <td><?= $contact->data_nasterii ?></td>
-                <td><?= $contact->detalii ?></td>
+                <td><?= $product->productId ?></td>
+                <td><?= $product->productImg ?></td>
+                <td><?= $product->productTitle ?></td>
+                <td><?= $product->productDesc ?></td>
+                <td><?= $product->productPrice ?></td>
             </tr>                                      
         <? endforeach; ?>
     </table>

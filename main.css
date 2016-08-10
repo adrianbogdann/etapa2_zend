@@ -1,0 +1,110 @@
+table {
+    border-collapse: collapse;
+	width: 70%;
+}
+
+th {
+	border: 1px solid black;
+	height: 100px;
+}
+table, td {
+    border: 1px solid black;
+	height: 50px;
+}
+
+#navbar-list
+{
+    list-style-type: none;
+    display: block;
+    text-align: center;
+}
+li
+{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 24px;
+    margin-left: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+div#navbar ul li a {
+text-decoration:none;
+color:black;}
+
+div#login{
+width:350px;
+height:auto;
+margin:50px auto 0;
+padding:50px;
+background-color:#EEE;
+color:#333;
+border:2px solid #C2D6FF;
+}
+
+label{
+font-size:15px;
+font-weight:700
+}
+
+input#username{
+border:1px solid #DADADA;
+margin-top:10px;
+margin-bottom:10px;
+padding-left:5px;
+width:310px;
+height:30px;
+font-size:14px;
+box-shadow:0 0 10px;
+-webkit-box-shadow:0 0 10px;
+/* For I.E */
+-moz-box-shadow:0 0 10px;
+/* For Mozilla Web Browser */
+border-radius:5px;
+-webkit-border-radius:5px;
+/* For I.E */
+-moz-border-radius:5px
+/* For Mozilla Web Browser */
+}
+
+input#password{
+border:1px solid #DADADA;
+margin-top:10px;
+margin-bottom:10px;
+padding-left:5px;
+width:310px;
+height:30px;
+font-size:14px;
+box-shadow:0 0 10px;
+-webkit-box-shadow:0 0 10px;
+/* For I.E */
+-moz-box-shadow:0 0 10px;
+/* For Mozilla Web Browser */
+border-radius:5px;
+-webkit-border-radius:5px;
+/* For I.E */
+-moz-border-radius:5px
+/* For Mozilla Web Browser */
+}
+
+input#submit {
+    background-color:#cc7a66;
+    border-radius:5px;
+    border:none;
+    padding:10px 25px;
+    color:#FFF;
+    text-shadow:1px 1px 1px #949494;
+    margin-left:120px
+}
+
+input#submit:hover{
+    background-color:#FF9980
+}
+
+a {
+    color:blue;
+    text-decoration: none
+}
+#logout {
+    padding-left: 700px;
+}

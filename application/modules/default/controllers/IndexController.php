@@ -3,6 +3,7 @@ class IndexController extends Zend_Controller_Action {
     public function indexAction() {
         $products = new Application_Models_Products();
         $this->view->products = $products->fetchAll();
+        session_start();
     }
     
     public function adaugaAction() {
@@ -22,6 +23,15 @@ class IndexController extends Zend_Controller_Action {
                 $this->_helper->redirector->gotoUrl('/');
             }
         }
+    }
+
+    public function addtocartAction() {
+        $id = $this->getRequest()->getParam('id');
+        if(!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = array();
+        }
+        $_SESSION['cart'][$id] = $id;
+        $this->view->prids = $_SESSION['cart'];
     }
 }
 ?>

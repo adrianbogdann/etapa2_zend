@@ -15,7 +15,7 @@ class IndexController extends Zend_Controller_Action {
                 $products = new Application_Models_Products();
                 $product = $products->createRow();
                 $product->nume = $this->getRequest()->getParam('nume');
-                $product>data_nasterii = $this->getRequest()->getParam('data_nasterii');
+                $product->data_nasterii = $this->getRequest()->getParam('data_nasterii');
                 $product->detalii = $this->getRequest()->getParam('detalii');
                 $product->save();
                 

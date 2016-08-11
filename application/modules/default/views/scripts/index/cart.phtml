@@ -1,4 +1,5 @@
 <?= $this->render('header.phtml'); ?>
+<?= $this->emptycart; die();?>
     <table border="1">
         <tr>
             <th>Id</th>
@@ -12,7 +13,7 @@
         <? foreach ($this->products as $product): ?>
             <tr>
                 <td><?= $product->productId ?></td>
-                <td><img src="images/<?= $product->productImg ?>" style="width:250px; height:250px;"/></td>
+                <td><img src="/images/<?= $product->productImg ?>" style="width:250px; height:250px;"/></td>
                 <td><?= $product->productTitle ?></td>
                 <td><?= $product->productDesc ?></td>
                 <td><?= $product->productPrice ?></td>
@@ -21,4 +22,5 @@
             </tr>
         <? endforeach; ?>
     </table>
+<? print_r($this->prids) ?>
 <?= $this->render('footer.phtml'); ?>

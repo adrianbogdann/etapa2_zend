@@ -3,7 +3,6 @@ class IndexController extends Zend_Controller_Action {
     public function indexAction() {
         $products = new Application_Models_Products();
         $this->view->products = $products->fetchAll();
-
     }
     
     public function adaugaAction() {
@@ -37,9 +36,20 @@ class IndexController extends Zend_Controller_Action {
         $this->view->prids = $_SESSION['cart'];
     }
 
-    public function cartAction() {
-        $products = new Application_Models_Products();
-        $this->view->products = $products->fetchAll();
+    public function cartAction()
+    {
+        session_start();
+        if (empty($_SESSION['cart'])) {
+            $this->view->emptycart = 'Cart is empty';
+        } else {
+            $ids = array();
+            foreach ($_SESSION['cart'] as $id) {
+                $ids[] = $id;
+            }
+            $products = new Application_Models_Products();
+            $this->view->products = $products->fetchAll(array('productId in (?)' => $_SESSION['cart']));
+
+        }
     }
 
     public function removefromcartAction() {

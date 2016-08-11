@@ -1,5 +1,10 @@
 <?= $this->render('header.phtml'); ?>
-<?= $this->emptycart; die();?>
+<? if(strcmp($this->emptycart, 'Cart is empty')==0): ?>
+    <h1>Your cart is empty</h1>
+    <?= 'To add products in the cart please return to the store' ?>
+    </br>
+    <a href="/index">Return to the store</a>
+    <? else: ?>
     <table border="1">
         <tr>
             <th>Id</th>
@@ -22,5 +27,6 @@
             </tr>
         <? endforeach; ?>
     </table>
+    <? endif; ?>
 <? print_r($this->prids) ?>
 <?= $this->render('footer.phtml'); ?>

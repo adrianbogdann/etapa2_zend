@@ -5,7 +5,7 @@
     function __autoload($className) {
         Zend_Loader::loadClass($className);
     }
-
+    session_start();
     $db = Zend_Db::factory('MYSQLI', array(
         'host'     => DBSERVER,
         'username' => DBUSER,

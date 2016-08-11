@@ -4,7 +4,7 @@ class IndexController extends Zend_Controller_Action {
         $products = new Application_Models_Products();
         $this->view->products = $products->fetchAll();
     }
-    
+
     public function adaugaAction() {
         $this->view->form = $form = new Application_Forms_Editare();
 
@@ -27,7 +27,6 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function addtocartAction() {
-        session_start();
         $id = $this->getRequest()->getParam('id');
         if(!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = array();
@@ -38,7 +37,6 @@ class IndexController extends Zend_Controller_Action {
 
     public function cartAction()
     {
-        session_start();
         if (empty($_SESSION['cart'])) {
             $this->view->emptycart = 'Cart is empty';
         } else {
@@ -48,12 +46,10 @@ class IndexController extends Zend_Controller_Action {
             }
             $products = new Application_Models_Products();
             $this->view->products = $products->fetchAll(array('productId in (?)' => $_SESSION['cart']));
-
         }
     }
 
     public function removefromcartAction() {
-        session_start();
         $id = $this->getRequest()->getParam('id');
         unset($_SESSION['cart'][$id]);
     }

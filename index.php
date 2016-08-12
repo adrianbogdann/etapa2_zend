@@ -6,6 +6,7 @@
         Zend_Loader::loadClass($className);
     }
     session_start();
+    //$loginsession = new Zend_Session_Namespace('userlogged');
     $db = Zend_Db::factory('MYSQLI', array(
         'host'     => DBSERVER,
         'username' => DBUSER,

@@ -1,0 +1,30 @@
+<?= $this->render('header.phtml'); ?>
+<div id="profile">
+    <b id="welcome">User logged in: <i><?= $_SESSION['user'] ?></i></b>
+    <b id="logout"><a href="">Logout</a></b>
+</div>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th></th>
+        <th><a href="/list/form">Add item</a></th>
+
+    </tr>
+    <? foreach ($this->list as $product): ?>
+        <tr>
+            <td><?= $product->productId ?></td>
+            <td><img src="images/<?= $product->productImg ?>" style="width:250px; height:250px;"/></td>
+            <td><?= $product->productTitle ?></td>
+            <td><?= $product->productDesc ?></td>
+            <td><?= $product->productPrice ?></td>
+            <td><a href="/index/addtocart/id/<?= $product->productId ?>">Add to cart</a></td>
+            <td><a href="list/form">Edit</a></td>
+        </tr>
+    <? endforeach; ?>
+</table>
+<br />
+<?= $this->render('footer.phtml'); ?>

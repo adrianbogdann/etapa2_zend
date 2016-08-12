@@ -1,8 +1,13 @@
 <?php
 class ListController extends Zend_Controller_Action {
     public function indexAction() {
-        $products = new Application_Models_Products();
-        $this->view->list = $products->fetchAll();
+        if (isset($_SESSION['user'])) {
+            $products = new Application_Models_Products();
+            $this->view->list = $products->fetchAll();
+            $this->view->admin = $isAdminOn = 1;
+        } else {
+            $this->view->admin = $isAdminOn = 0;
+        }
     }
 
     public function adaugaAction() {
@@ -37,5 +42,11 @@ class ListController extends Zend_Controller_Action {
         $id = $this->getRequest()->getParam('id');
         $products = new Application_Models_Products();
         $nors = $products->delete(array('productId in (?)' => $id));
+    }
+
+    public function logoutAction() {
+        if (session_destroy()) {
+            unset($_SESSION['user']);
+        }
     }
 }

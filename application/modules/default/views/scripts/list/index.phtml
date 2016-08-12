@@ -1,7 +1,10 @@
 <?= $this->render('header.phtml'); ?>
+<? if ($this->admin == 0): ?>
+<? header('location: /login'); ?>
+<? else: ?>
 <div id="profile">
     <b id="welcome">User logged in: <i><?= $_SESSION['user'] ?></i></b>
-    <b id="logout"><a href="">Logout</a></b>
+    <b id="logout"><a href="/list/logout">Logout</a></b>
 </div>
 <table>
     <tr>
@@ -27,4 +30,5 @@
     <? endforeach; ?>
 </table>
 <br />
+<? endif; ?>
 <?= $this->render('footer.phtml'); ?>

@@ -32,4 +32,10 @@ class ListController extends Zend_Controller_Action {
             }
         }
     }
+
+    public function removeAction() {
+        $id = $this->getRequest()->getParam('id');
+        $products = new Application_Models_Products();
+        $nors = $products->delete(array('productId in (?)' => $id));
+    }
 }

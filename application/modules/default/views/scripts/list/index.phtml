@@ -17,12 +17,12 @@
     <? foreach ($this->list as $product): ?>
         <tr>
             <td><?= $product->productId ?></td>
-            <td><img src="images/<?= $product->productImg ?>" style="width:250px; height:250px;"/></td>
+            <td><img src="/images/<?= $product->productImg ?>" style="width:250px; height:250px;"/></td>
             <td><?= $product->productTitle ?></td>
             <td><?= $product->productDesc ?></td>
             <td><?= $product->productPrice ?></td>
             <td><a href="/list/form/id/<?= $product->productId ?>">Edit</a></td>
-            <td><a href="list/form">Remove</a></td>
+            <td><a href="/list/remove/id/<?= $product->productId ?>">Remove</a></td>
         </tr>
     <? endforeach; ?>
 </table>

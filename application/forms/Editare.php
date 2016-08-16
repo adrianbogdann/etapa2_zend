@@ -6,10 +6,10 @@ class Application_Forms_Editare extends Zend_Form {
 
         $this->setAttrib('enctype', 'multipart/form-data');
 
-        $campId = new Zend_Form_Element_Text('id');
-        $campId->setLabel('Id')
-            ->setRequired(true)
-            ->addValidator($validator);
+//        $campId = new Zend_Form_Element_Text('id');
+//        $campId->setLabel('Id')
+//            ->setRequired(true)
+//            ->addValidator($validator);
 
         $campImage = new Zend_Form_Element_File('image');
         //-------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ class Application_Forms_Editare extends Zend_Form {
         $buton = new Zend_Form_Element_Submit('submit');
         $buton->setLabel('OK');
 
-        $this->addElements(array($campId, $campImage, $campTitle, $campDesc, $campPrice, $buton));
+        $this->addElements(array($campImage, $campTitle, $campDesc, $campPrice, $buton));
     }
 }
 ?>

@@ -39,23 +39,24 @@ class ListController extends Zend_Controller_Action {
     }
 
     public function formAction() {
-        if ($this->getRequest()->getParam('number') !== null) {
+        if ($this->getRequest()->getParam('number') !== null) { //editare
             $id = $this->getRequest()->getParam('number');
             $this->editForm = $form = new Application_Forms_Editare();
 
             $products = new Application_Models_Products();
             $list = $products->fetchAll(array('productId in (?)' => $id));
             $row = $list->current();
-            $this->editForm->getElement('id')->setValue($row->productId);
+            //$this->editForm->getElement('id')->setValue($row->productId);
             $this->editForm->getElement('title')->setValue($row->productTitle);
             $this->editForm->getElement('desc')->setValue($row->productDesc);
             $this->editForm->getElement('price')->setValue($row->productPrice);
             $this->view->form = $this->editForm;
 
         } else {
-            $this->view->form = $form = new Application_Forms_Editare();
+            $this->view->form = $form = new Application_Forms_Editare(); //adaugare
         }
-        if($this->getRequest()->getParam('id') !== null) {
+
+        if($this->getRequest()->getParam('title') !== null) {
             if (!$form->isValid($this->getRequest()->getParams())) {
                 $this->view->mesaj = 'Incorect';
             } else {
@@ -66,16 +67,27 @@ class ListController extends Zend_Controller_Action {
                 } catch (Zend_File_Transfer_Exception $e) {
                     $e->getMessage();
                 }
+                //$id = $this->getRequest()->getParam('number');
                 $photoname = $adapter->getFileName('image', false);
                 $products = new Application_Models_Products();
                 $product = $products->createRow();
-                $product->productId = $this->getRequest()->getParam('id');
-                $product->productImg = $photoname;
+                $product->productId = $id;
+                if(!empty($photoname)) {
+                    $product->productImg = $photoname;
+                    unlink(dirname(__FILE__) . "/images/" . $row->productImg);
+                } else {
+                    $product->productImg = $row->productImg;
+                }
                 $product->productTitle = $this->getRequest()->getParam('title');
                 $product->productDesc = $this->getRequest()->getParam('desc');
                 $product->productPrice = $this->getRequest()->getParam('price');
-                $product->save();
 
+                $productArray = $product->toArray();
+                if ($this->getRequest()->getParam('number') !== null) {
+                    $products->update($productArray,"productId = $id");
+                } else {
+                    $product->save();
+                }
                 $this->_helper->redirector->gotoUrl('/list');
             }
         }

@@ -1,4 +1,5 @@
 <?= $this->render('header.phtml'); ?>
+
 <? if(strcmp($this->emptycart, 'Cart is empty')==0): ?>
     <h1>Your cart is empty</h1>
     <?= 'To add products in the cart please return to the store' ?>
@@ -28,5 +29,6 @@
         <? endforeach; ?>
     </table>
     <a href="/index/checkout">Checkout</a>
-    <? endif; ?>
+<? endif; ?>
+
 <?= $this->render('footer.phtml'); ?>

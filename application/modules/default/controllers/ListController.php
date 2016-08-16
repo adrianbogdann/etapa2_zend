@@ -46,17 +46,16 @@ class ListController extends Zend_Controller_Action {
             $products = new Application_Models_Products();
             $list = $products->fetchAll(array('productId in (?)' => $id));
             $row = $list->current();
-            //$this->editForm->getElement('id')->setValue($row->productId);
-            $this->editForm->getElement('title')->setValue($row->productTitle);
-            $this->editForm->getElement('desc')->setValue($row->productDesc);
-            $this->editForm->getElement('price')->setValue($row->productPrice);
+            $editArray = $row->toArray();
+            //$this->view->imglink = $editArray['productImg'];
+            $this->editForm->populate($editArray);
             $this->view->form = $this->editForm;
 
         } else {
             $this->view->form = $form = new Application_Forms_Editare(); //adaugare
         }
 
-        if($this->getRequest()->getParam('title') !== null) {
+        if($this->getRequest()->getParam('productTitle') !== null) {
             if (!$form->isValid($this->getRequest()->getParams())) {
                 $this->view->mesaj = 'Incorect';
             } else {
@@ -68,19 +67,19 @@ class ListController extends Zend_Controller_Action {
                     $e->getMessage();
                 }
                 //$id = $this->getRequest()->getParam('number');
-                $photoname = $adapter->getFileName('image', false);
+                $photoName = $adapter->getFileName('image', false);
                 $products = new Application_Models_Products();
                 $product = $products->createRow();
                 $product->productId = $id;
-                if(!empty($photoname)) {
-                    $product->productImg = $photoname;
-                    unlink(dirname(__FILE__) . "/images/" . $row->productImg);
+                if(!empty($photoName)) {
+                    $product->productImg = $photoName;
+                    unlink('C:\wamp64\www\etapa2_zend\images\\' .  $editArray['productImg']);
                 } else {
                     $product->productImg = $row->productImg;
                 }
-                $product->productTitle = $this->getRequest()->getParam('title');
-                $product->productDesc = $this->getRequest()->getParam('desc');
-                $product->productPrice = $this->getRequest()->getParam('price');
+                $product->productTitle = $this->getRequest()->getParam('productTitle');
+                $product->productDesc = $this->getRequest()->getParam('productDesc');
+                $product->productPrice = $this->getRequest()->getParam('productPrice');
 
                 $productArray = $product->toArray();
                 if ($this->getRequest()->getParam('number') !== null) {
@@ -88,7 +87,7 @@ class ListController extends Zend_Controller_Action {
                 } else {
                     $product->save();
                 }
-                $this->_helper->redirector->gotoUrl('/list');
+              //  $this->_helper->redirector->gotoUrl('/list');
             }
         }
     }

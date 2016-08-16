@@ -19,19 +19,16 @@ class Application_Forms_Editare extends Zend_Form {
             ->addValidator('Extension', false, array('png', 'jpg', 'jpeg'));
             //->addFilter('Rename','C:\wamp64\www\etapa2_zend\images');
 
-
-
-
         //-------------------------------------------------------------------------------------------
-        $campTitle = new Zend_Form_Element_Text('title');
+        $campTitle = new Zend_Form_Element_Text('productTitle');
         $campTitle->setLabel('Title')
             ->setRequired(true)
             ->addValidator($validator);
             
-        $campDesc = new Zend_Form_Element_Textarea('desc');
+        $campDesc = new Zend_Form_Element_Textarea('productDesc');
         $campDesc->setLabel('Description');
 
-        $campPrice = new Zend_Form_Element_Text('price');
+        $campPrice = new Zend_Form_Element_Text('productPrice');
         $campPrice->setLabel('Price')
             ->setRequired(true)
             ->addValidator($validator);

@@ -1,34 +1,36 @@
 <?= $this->render('header.phtml'); ?>
-<? if ($this->admin == 0): ?>
-<? header('location: /login'); ?>
-<? else: ?>
-<div id="profile">
-    <b id="welcome">User logged in: <i><?= $_SESSION['user'] ?></i></b>
-    <b id="logout"><a href="/list/logout">Logout</a></b>
-</div>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Image</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th></th>
-        <th><a href="/list/form">Add item</a></th>
 
-    </tr>
-    <? foreach ($this->list as $product): ?>
+<? if ($this->admin == 0): ?>
+    <?= die();?>
+    <? header('location: /login'); ?>
+<? else: ?>
+    <div id="profile">
+        <b id="welcome">User logged in: <i><?= $_SESSION['user'] ?></i></b>
+        <b id="logout"><a href="/list/logout">Logout</a></b>
+    </div>
+    <table>
         <tr>
-            <td><?= $product->productId ?></td>
-            <td><img src="/images/<?= $product->productImg ?>" style="width:250px; height:250px;"/></td>
-            <td><?= $product->productTitle ?></td>
-            <td><?= $product->productDesc ?></td>
-            <td><?= $product->productPrice ?></td>
-            <td><a href="/list/form/number/<?= $product->productId ?>">Edit</a></td>
-            <td><a href="/list/remove/id/<?= $product->productId ?>">Remove</a></td>
+            <th>Id</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+            <th><a href="/list/form">Add item</a></th>
         </tr>
-    <? endforeach; ?>
-</table>
-<br />
+        <? foreach ($this->list as $product): ?>
+            <tr>
+                <td><?= $product->productId ?></td>
+                <td><img src="/images/<?= $product->productImg ?>" style="width:250px; height:250px;"/></td>
+                <td><?= $product->productTitle ?></td>
+                <td><?= $product->productDesc ?></td>
+                <td><?= $product->productPrice ?></td>
+                <td><a href="/list/form/number/<?= $product->productId ?>">Edit</a></td>
+                <td><a href="/list/remove/id/<?= $product->productId ?>">Remove</a></td>
+            </tr>
+        <? endforeach; ?>
+    </table>
+    <br />
 <? endif; ?>
+
 <?= $this->render('footer.phtml'); ?>

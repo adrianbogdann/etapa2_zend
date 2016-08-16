@@ -14,7 +14,7 @@
         <th>Description</th>
         <th>Price</th>
         <th></th>
-        <th><a href="/list/adauga">Add item</a></th>
+        <th><a href="/list/form">Add item</a></th>
 
     </tr>
     <? foreach ($this->list as $product): ?>
@@ -24,7 +24,7 @@
             <td><?= $product->productTitle ?></td>
             <td><?= $product->productDesc ?></td>
             <td><?= $product->productPrice ?></td>
-            <td><a href="/list/form/id/<?= $product->productId ?>">Edit</a></td>
+            <td><a href="/list/form/number/<?= $product->productId ?>">Edit</a></td>
             <td><a href="/list/remove/id/<?= $product->productId ?>">Remove</a></td>
         </tr>
     <? endforeach; ?>
